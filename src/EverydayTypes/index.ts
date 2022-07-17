@@ -285,6 +285,7 @@ enum TypeEnum {
 }
 
 // 总结
+//  Static types systems describe the shapes and behaviors of what our values will be when we run our programs
 // 1. primitives string number boolean null undefined symbol bigInt(ES2020)
 // 2. type和interface主要区别， type定义无法修改和重复定义
 // 3. type 也可以实现对象的扩展， 请看 178行
