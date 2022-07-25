@@ -412,6 +412,36 @@ type aa<T> = {
   ): void;
 };
 
-const aaa: aa<number> = [];
+const aaa: aa<number> = [1, 2, 3];
 
 aaa.forEach((v, index, arr) => console.log(v));
+
+interface IUser {
+  name: string;
+  age: number;
+}
+class TestParam {
+  printUser(user: IUser) {
+    console.log(user);
+    return user;
+  }
+}
+
+const test = new TestParam();
+
+test.printUser({ age: 1 });
+test.printUser({ age: 1, name: "222" });
+test.printUser({ age: 1, name: "222", type: 3 });
+//
+// call<T, A extends any[], R>(this: (this: T, ...args: A) => R, thisArg: T, ...args: A): R;
+const aaaa = test.printUser.call(null, { age: 1, name: "222", type: 3 });
+test.printUser.call(null, { age: 1, name: "222" });
+test.printUser.call(null, { age: 1 });
+
+function foo(cb: (a: number | string, b: string) => { a: number }) {
+  //  let ret = cb(..)
+}
+
+foo((a: number | string | 1, b) => {
+  return { a: 1, b: 1 };
+});
