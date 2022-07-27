@@ -2,25 +2,25 @@
  * Class Members
  */
 
-export {}
+export {};
 // fields
 class Point {
-  x = 0
-  y = 0
+  x = 0;
+  y = 0;
 }
 
-const pt = new Point()
-pt.x = 0
-pt.y = 0
+const pt = new Point();
+pt.x = 0;
+pt.y = 0;
 
 // --strictPropertyInitialization
 // The strictPropertyInitialization setting controls whether class fields need to be initialized in the constructor.
 
 class GoodGreeter {
-  name: string
+  name: string;
 
   constructor() {
-    this.name = 'hello'
+    this.name = "hello";
   }
 }
 
@@ -30,11 +30,11 @@ class GoodGreeter {
 // (for example, maybe an external library is filling in part of your class for you),
 // you can use the definite assignment assertion operator, !
 class GoodGreeter1 {
-  name!: string
+  name!: string;
 
   constructor() {}
   init() {
-    this.name = 'hello'
+    this.name = "hello";
   }
 }
 
@@ -43,11 +43,11 @@ class GoodGreeter1 {
  */
 //  Fields may be prefixed with the readonly modifier. This prevents assignments to the field outside of the constructor.
 class Greeter {
-  readonly name: string = 'world'
+  readonly name: string = "world";
 
   constructor(otherName?: string) {
     if (otherName !== undefined) {
-      this.name = otherName
+      this.name = otherName;
     }
   }
 
@@ -55,7 +55,7 @@ class Greeter {
     // this.name = 'not ok'
   }
 }
-const g = new Greeter()
+const g = new Greeter();
 // g.name = 'also not ok'
 
 /**
@@ -63,20 +63,20 @@ const g = new Greeter()
  */
 //  Class constructors are very similar to functions. You can add parameters with type annotations, default values, and overloads:
 class Point1 {
-  x: number
-  y: number
+  x: number;
+  y: number;
 
   // Normal signature with defaults
   constructor(x = 0, y = 0) {
-    this.x = x
-    this.y = y
+    this.x = x;
+    this.y = y;
   }
 }
 
 class Point2 {
   // Overloads
-  constructor(x: number, y: string)
-  constructor(s: string)
+  constructor(x: number, y: string);
+  constructor(s: string);
   constructor(xs: any, y?: any) {
     // TBD
   }
@@ -91,13 +91,13 @@ class Point2 {
 
 //  Just as in JavaScript, if you have a base class, you’ll need to call super(); in your constructor body before using any this. members:
 class Base {
-  k = 4
+  k = 4;
 }
 
 class Derived extends Base {
   constructor() {
-    super()
-    console.log(this.k)
+    super();
+    console.log(this.k);
   }
 }
 
@@ -106,12 +106,12 @@ class Derived extends Base {
  */
 //  A function property on a class is called a method. Methods can use all the same type annotations as functions and constructors:
 class Point3 {
-  x = 10
-  y = 10
+  x = 10;
+  y = 10;
 
   scale(n: number): void {
-    this.x *= n
-    this.y *= n
+    this.x *= n;
+    this.y *= n;
   }
 }
 
@@ -125,37 +125,37 @@ class Point3 {
 //  Getters and setters must have the same Member Visibility
 
 class C {
-  _length = 0
+  _length = 0;
   get length() {
-    return this._length
+    return this._length;
   }
   set length(value) {
-    this._length = value
+    this._length = value;
   }
 }
 
 class Thing {
-  _size = 0
+  _size = 0;
 
   get size(): number {
-    return this._size
+    return this._size;
   }
 
   set size(value: string | number | boolean) {
-    let num = Number(value)
+    let num = Number(value);
 
     // Don't allow NaN, Infinity, etc
 
     if (!Number.isFinite(num)) {
-      this._size = 0
-      return
+      this._size = 0;
+      return;
     }
 
-    this._size = num
+    this._size = num;
   }
 }
 
-const thing = new Thing()
+const thing = new Thing();
 // thing.size
 
 /**
@@ -166,10 +166,10 @@ const thing = new Thing()
 // Generally it’s better to store indexed data in another place instead of on the class instance itself.
 
 class MyClass {
-  [s: string]: boolean | ((s: string) => boolean)
+  [s: string]: boolean | ((s: string) => boolean);
 
   check(s: string) {
-    return this[s] as boolean
+    return this[s] as boolean;
   }
 
   // getName() {
@@ -181,34 +181,34 @@ class MyClass {
  */
 // implements Clauses
 interface Pingable {
-  ping(): void
+  ping(): void;
 }
 
 class Sonar implements Pingable {
   ping() {
-    console.log('ping!')
+    console.log("ping!");
   }
 }
 
 class Ball implements Pingable {
   ping(): void {
-    throw new Error('Method not implemented.')
+    throw new Error("Method not implemented.");
   }
   pong() {
-    console.log('pong!')
+    console.log("pong!");
   }
 }
 
 // Cautions
 interface Checkable {
-  check(name: string): boolean
+  check(name: string): boolean;
 }
 
 // It’s important to understand that an implements clause is only a check that the class can be treated as the interface type.
 // It doesn’t change the type of the class or its methods at all.
 class NameChecker implements Checkable {
   check(s: string) {
-    return s.toLowerCase() === 'ok'
+    return s.toLowerCase() === "ok";
   }
 }
 
@@ -218,50 +218,50 @@ class NameChecker implements Checkable {
 
 class Animal {
   move() {
-    console.log('Moving along!')
+    console.log("Moving along!");
   }
 }
 
 class Dog extends Animal {
   woof(times: number) {
     for (let i = 0; i < times; i++) {
-      console.log('woof!')
+      console.log("woof!");
     }
   }
 }
 
-const d = new Dog()
+const d = new Dog();
 // Base class method
-d.move()
+d.move();
 // Derived class method
-d.woof(3)
+d.woof(3);
 
 /**
  * Overriding Methods
  */
 class Base1 {
   greet() {
-    console.log('Hello, world!')
+    console.log("Hello, world!");
   }
 }
 
 class Derived1 extends Base1 {
   greet(name?: string) {
     if (name === undefined) {
-      super.greet()
+      super.greet();
     } else {
-      console.log(`Hello, ${name.toUpperCase()}`)
+      console.log(`Hello, ${name.toUpperCase()}`);
     }
   }
 }
 
-const dd = new Derived1()
-dd.greet()
-dd.greet('reader')
+const dd = new Derived1();
+dd.greet();
+dd.greet("reader");
 
 class Base2 {
   greet() {
-    console.log('Hello, world!')
+    console.log("Hello, world!");
   }
 }
 
@@ -279,13 +279,13 @@ class Derived2 extends Base2 {
   // }
 
   greet(name?: string, age?: number) {
-    console.log(`Hello, ${name?.toUpperCase()}`)
+    console.log(`Hello, ${name?.toUpperCase()}`);
   }
 }
 
-const bb: Base2 = new Derived2()
+const bb: Base2 = new Derived2();
 // Crashes because "name" will be undefined
-bb.greet()
+bb.greet();
 
 /**
  * Type-only Field Declarations
@@ -294,26 +294,26 @@ bb.greet()
 // overwriting any value set by the parent class. This can be a problem when you only want to re-declare a more accurate type for an inherited field.
 // To handle these cases, you can write declare to indicate to TypeScript that there should be no runtime effect for this field declaration.
 interface Animal {
-  dateOfBirth: any
+  dateOfBirth: any;
 }
 
 interface Dog extends Animal {
-  breed: any
+  breed: any;
 }
 
 class AnimalHouse {
-  resident: Animal
+  resident: Animal;
   constructor(animal: Animal) {
-    this.resident = animal
+    this.resident = animal;
   }
 }
 
 class DogHouse extends AnimalHouse {
   // Does not emit JavaScript code,
   // only ensures the types are correct
-  declare resident: Dog
+  declare resident: Dog;
   constructor(dog: Dog) {
-    super(dog)
+    super(dog);
   }
 }
 
@@ -338,52 +338,52 @@ class DogHouse extends AnimalHouse {
 // public default
 class Greeter2 {
   public greet() {
-    console.log('hi!')
+    console.log("hi!");
   }
 }
-const g2 = new Greeter2()
-g2.greet()
+const g2 = new Greeter2();
+g2.greet();
 
 // protected
 // protected members are only visible to subclasses of the class they’re declared in.
 class Greeter3 {
   public greet() {
-    console.log('Hello, ' + this.getName())
+    console.log("Hello, " + this.getName());
   }
   protected getName() {
-    return 'hi'
+    return "hi";
   }
 }
 
 class SpecialGreeter extends Greeter3 {
   public howdy() {
     // OK to access protected member here
-    console.log('Howdy, ' + this.getName())
+    console.log("Howdy, " + this.getName());
   }
 }
-const gg = new SpecialGreeter()
-gg.greet() // OK
+const gg = new SpecialGreeter();
+gg.greet(); // OK
 // gg.getName()
 
 // Exposure of protected members
 class Base4 {
-  protected m = 10
+  protected m = 10;
 }
 class Derived4 extends Base4 {
   // No modifier, so default is 'public'
-  m = 15
+  m = 15;
 }
-const ddd = new Derived4()
-console.log(ddd.m) // OK
+const ddd = new Derived4();
+console.log(ddd.m); // OK
 
 // private
 // Cross-instance private access
 class A {
-  private x = 10
+  private x = 10;
 
   public sameAs(other: A) {
     // No error
-    return other.x === this.x
+    return other.x === this.x;
   }
 }
 
@@ -409,62 +409,62 @@ function fn(this: SomeType, x: number) {
 // }
 
 class Box {
-  content: string = ''
+  content: string = "";
   sameAs(other: this) {
-    return other.content === this.content
+    return other.content === this.content;
   }
 }
 
 class DerivedBox extends Box {
-  otherContent: string = '?'
+  otherContent: string = "?";
 }
 
-const base = new Box()
-const derived = new DerivedBox()
-derived.sameAs(base)
+const base = new Box();
+const derived = new DerivedBox();
+// derived.sameAs(base)
 
 /**
  * this-based type guards
  */
 class FileSystemObject {
   isFile(): this is FileRep {
-    return this instanceof FileRep
+    return this instanceof FileRep;
   }
   isDirectory(): this is Directory {
-    return this instanceof Directory
+    return this instanceof Directory;
   }
   isNetworked(): this is Networked & this {
-    return this.networked
+    return this.networked;
   }
   constructor(public path: string, private networked: boolean) {}
 }
 
 class FileRep extends FileSystemObject {
   constructor(path: string, public content: string) {
-    super(path, false)
+    super(path, false);
   }
 }
 
 class Directory extends FileSystemObject {
-  children: FileSystemObject[] = []
+  children: FileSystemObject[] = [];
 }
 
 interface Networked {
-  host: string
+  host: string;
 }
 
-const fso: FileSystemObject = new FileRep('foo/bar.txt', 'foo')
+const fso: FileSystemObject = new FileRep("foo/bar.txt", "foo");
 
 if (fso.isFile()) {
-  fso
+  fso;
   // fso.content
   // const fso: FileRep
 } else if (fso.isDirectory()) {
   // fso.children
-  fso
+  fso;
   // const fso: Directory
 } else if (fso.isNetworked()) {
-  fso
+  fso;
 }
 
 /**
@@ -477,25 +477,25 @@ class Params {
   constructor(
     public readonly x: number,
     protected y: number,
-    private z: number,
+    private z: number
   ) {
     // No body necessary
   }
 }
-const a = new Params(1, 2, 3)
-console.log(a.x)
+const a = new Params(1, 2, 3);
+console.log(a.x);
 
 /**
  * Class Expressions
  */
 const someClass = class<Type> {
-  content: Type
+  content: Type;
   constructor(value: Type) {
-    this.content = value
+    this.content = value;
   }
-}
+};
 
-const m = new someClass('Hello, world')
+const m = new someClass("Hello, world");
 
 /**
  * abstract Classes and Members
@@ -505,21 +505,21 @@ const m = new someClass('Hello, world')
 // The role of abstract classes is to serve as a base class for subclasses which do implement all the abstract members.
 // When a class doesn’t have any abstract members, it is said to be concrete.
 abstract class Base123 {
-  abstract getName(): string
+  abstract getName(): string;
 
   printName() {
-    console.log('Hello, ' + this.getName())
+    console.log("Hello, " + this.getName());
   }
 }
 
 class Derived123 extends Base123 {
   getName() {
-    return 'world'
+    return "world";
   }
 }
 
-const d123 = new Derived123()
-d123.printName()
+const d123 = new Derived123();
+d123.printName();
 
 /**
  * Abstract Construct Signatures
@@ -529,61 +529,61 @@ function greet(ctor: typeof Base123) {
   // instance.printName()
 }
 //bad
-greet(Base123)
+greet(Base123);
 
 function greet1(ctor: new () => Base123) {
-  const instance = new ctor()
-  instance.printName()
+  const instance = new ctor();
+  instance.printName();
 }
-greet1(Derived123)
-greet1(Base123)
+greet1(Derived123);
+// greet1(Base123);
 
 // Relationships Between Classes
 class Person {
-  name: string = 'e'
-  age: number = 1
+  name: string = "e";
+  age: number = 1;
 }
 
 class Employee {
-  name: string = 'ee'
-  age: number = 22
-  salary: number = 23
+  name: string = "ee";
+  age: number = 22;
+  salary: number = 23;
 }
 
 // OK
-const p: Person = new Employee()
+const p: Person = new Employee();
 // const e1: Employee = new Person()
 
 /**
  * Arrow Functions
  */
 class MyClass1 {
-  name = 'MyClass'
+  name = "MyClass";
   public getName = () => {
-    return this.name
-  }
+    return this.name;
+  };
 
   getName2() {
-    return this.name
+    return this.name;
   }
 }
-const c = new MyClass1()
-const ggg = c.getName
+const c = new MyClass1();
+const ggg = c.getName;
 // Prints "MyClass" instead of crashing
-console.log(ggg())
+console.log(ggg());
 
 class MyClass2 extends MyClass1 {
-  name = 'myClass2'
+  name = "myClass2";
 
   getName = () => {
     // 会报错
-    super.getName()
-    return this.name
-  }
+    super.getName();
+    return this.name;
+  };
 
   getName2() {
-    super.getName2()
-    return this.name
+    super.getName2();
+    return this.name;
   }
 }
 
@@ -604,10 +604,10 @@ class MyClass2 extends MyClass1 {
 //   return MyClass1;
 // }());
 
-const c2 = new MyClass2()
-const gggg = c2.getName
+const c2 = new MyClass2();
+const gggg = c2.getName;
 // Prints "MyClass" instead of crashing
-console.log(ggg())
+console.log(ggg());
 
 // 总结
 // ts可以用this参数 可以约束类型
